@@ -1,0 +1,3 @@
+<script>
+gtag('set', <?=json_encode($parameters, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_PRESERVE_ZERO_FRACTION | \JSON_INVALID_UTF8_IGNORE)?>);
+</script>

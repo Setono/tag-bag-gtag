@@ -1,0 +1,7 @@
+parameters:
+	reportUnmatchedIgnoredErrors: true
+	checkMissingIterableValueType: false
+
+	excludes_analyse:
+		- 'tests/**.php'
+		- 'src/templates/**'
