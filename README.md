@@ -1,4 +1,4 @@
-# PHP tag and renderer for the tag bag library
+# Google gtag tag for the tag bag library
 
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]

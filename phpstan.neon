@@ -5,3 +5,6 @@ parameters:
 	excludes_analyse:
 		- 'tests/**.php'
 		- 'src/templates/**'
+
+	ignoreErrors:
+		- '/Variable property access on \$this\(Setono\\TagBag\\Tag\\Gtag\)/'

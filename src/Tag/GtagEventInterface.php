@@ -9,7 +9,6 @@ interface GtagEventInterface extends GtagInterface
     /**
      * The list of events are taken from here: https://developers.google.com/gtagjs/reference/event
      */
-    
     public const EVENT_ADD_PAYMENT_INFO = 'add_payment_info';
 
     public const EVENT_ADD_TO_CART = 'add_to_cart';
