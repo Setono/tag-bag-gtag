@@ -6,17 +6,8 @@ namespace Setono\TagBag\Tag;
 
 class GtagSet extends Gtag implements GtagSetInterface
 {
-    public function __construct(string $key, array $parameters)
+    public function __construct(array $parameters)
     {
-        parent::__construct($key, '@SetonoTagBagGtag/set');
-
-        foreach ($parameters as $k => $v) {
-            $this->addParameter($k, $v);
-        }
-    }
-
-    protected function getPropertiesForContext(): array
-    {
-        return ['parameters'];
+        parent::__construct('@SetonoTagBagGtag/set', $parameters);
     }
 }

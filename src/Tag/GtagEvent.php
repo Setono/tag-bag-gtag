@@ -9,15 +9,11 @@ class GtagEvent extends Gtag implements GtagEventInterface
     /** @var string */
     protected $event;
 
-    public function __construct(string $key, string $event, array $parameters = [])
+    public function __construct(string $event, array $parameters = [])
     {
-        parent::__construct($key, '@SetonoTagBagGtag/event');
+        parent::__construct('@SetonoTagBagGtag/event', $parameters);
 
         $this->event = $event;
-
-        foreach ($parameters as $k => $v) {
-            $this->addParameter($k, $v);
-        }
     }
 
     public function getEvent(): string
@@ -27,6 +23,6 @@ class GtagEvent extends Gtag implements GtagEventInterface
 
     protected function getPropertiesForContext(): array
     {
-        return ['event', 'parameters'];
+        return array_merge(['event'], parent::getPropertiesForContext());
     }
 }

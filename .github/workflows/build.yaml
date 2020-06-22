@@ -3,7 +3,7 @@ on:
     push: ~
     pull_request: ~
     schedule:
-        - cron: 5 8 * * 3
+        - cron: 5 8 * * 2
 jobs:
     checks:
         name: 'PHP ${{ matrix.php-versions }} with composer args: ${{ matrix.composer-args }}'

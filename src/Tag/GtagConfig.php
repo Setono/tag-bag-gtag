@@ -9,15 +9,11 @@ class GtagConfig extends Gtag implements GtagConfigInterface
     /** @var string */
     protected $target;
 
-    public function __construct(string $key, string $target, array $parameters = [])
+    public function __construct(string $target, array $parameters = [])
     {
-        parent::__construct($key, '@SetonoTagBagGtag/config');
+        parent::__construct('@SetonoTagBagGtag/config', $parameters);
 
         $this->target = $target;
-
-        foreach ($parameters as $k => $v) {
-            $this->addParameter($k, $v);
-        }
     }
 
     public function getTarget(): string
@@ -27,6 +23,6 @@ class GtagConfig extends Gtag implements GtagConfigInterface
 
     protected function getPropertiesForContext(): array
     {
-        return ['target', 'parameters'];
+        return array_merge(['target'], parent::getPropertiesForContext());
     }
 }

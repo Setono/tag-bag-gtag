@@ -4,10 +4,17 @@ declare(strict_types=1);
 
 namespace Setono\TagBag\Tag;
 
-abstract class Gtag extends PhpTag implements GtagInterface
+abstract class Gtag extends PhpTemplatesTag implements GtagInterface
 {
     /** @var array */
-    protected $parameters = [];
+    protected $parameters;
+
+    public function __construct(string $template, array $parameters = [])
+    {
+        parent::__construct($template);
+
+        $this->parameters = $parameters;
+    }
 
     public function getParameters(): array
     {
@@ -39,5 +46,8 @@ abstract class Gtag extends PhpTag implements GtagInterface
     /**
      * Returns the properties that will be returned as the context for the template
      */
-    abstract protected function getPropertiesForContext(): array;
+    protected function getPropertiesForContext(): array
+    {
+        return ['parameters'];
+    }
 }
