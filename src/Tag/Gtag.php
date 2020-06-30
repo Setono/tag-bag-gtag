@@ -13,6 +13,7 @@ abstract class Gtag extends PhpTemplatesTag implements GtagInterface
     {
         parent::__construct($template);
 
+        $this->setName('setono_tag_bag_gtag');
         $this->parameters = $parameters;
     }
 

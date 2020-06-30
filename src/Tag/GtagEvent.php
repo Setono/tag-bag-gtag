@@ -13,6 +13,7 @@ class GtagEvent extends Gtag implements GtagEventInterface
     {
         parent::__construct('@SetonoTagBagGtag/event', $parameters);
 
+        $this->setName('setono_tag_bag_gtag_event');
         $this->event = $event;
     }
 
