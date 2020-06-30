@@ -14,7 +14,10 @@ class GtagLibrary extends PhpTemplatesTag
             'id' => $id,
         ]);
 
-        $this->setName(self::NAME);
-        $this->setUnique(true);
+        $this->setName(self::NAME)
+            ->setUnique(true)
+            ->setSection(TagInterface::SECTION_HEAD)
+            ->setPriority(128)
+        ;
     }
 }

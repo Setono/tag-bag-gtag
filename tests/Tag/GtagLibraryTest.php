@@ -31,6 +31,8 @@ final class GtagLibraryTest extends TestCase
         $tag = new GtagLibrary('id');
 
         $this->assertSame('@SetonoTagBagGtag/library', $tag->getTemplate());
+        $this->assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
+        $this->assertSame(128, $tag->getPriority());
     }
 
     /**
