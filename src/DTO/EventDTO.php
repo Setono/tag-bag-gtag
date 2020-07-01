@@ -4,12 +4,25 @@ declare(strict_types=1);
 
 namespace Setono\TagBag\DTO;
 
-use Spatie\DataTransferObject\DataTransferObject;
-
-abstract class EventDTO extends DataTransferObject
+class EventDTO
 {
     /** @var string */
-    public $event;
+    private $event;
+
+    public function __construct(string $event)
+    {
+        $this->event = $event;
+    }
+
+    public function getEvent(): string
+    {
+        return $this->event;
+    }
+
+    public function setEvent(string $event): void
+    {
+        $this->event = $event;
+    }
 
     /**
      * Returns an associative array of the parameters injected into the gtag event

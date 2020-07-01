@@ -14,14 +14,9 @@ final class PurchaseEventDTOTest extends TestCase
      */
     public function it_creates(): void
     {
-        $dto = new PurchaseEventDTO([
-            'sendTo' => 'sendTo',
-            'transactionId' => 'transactionId',
-            'currency' => 'USD',
-            'value' => 123.45,
-        ]);
+        $dto = new PurchaseEventDTO('sendTo', 'USD', 123.45, 'transactionId');
 
-        $this->assertSame(GtagEventInterface::EVENT_PURCHASE, $dto->event);
+        $this->assertSame(GtagEventInterface::EVENT_PURCHASE, $dto->getEvent());
         $this->assertSame([
             'send_to' => 'sendTo',
             'transaction_id' => 'transactionId',
@@ -35,17 +30,12 @@ final class PurchaseEventDTOTest extends TestCase
      */
     public function it_filters_null_values(): void
     {
-        $dto = new PurchaseEventDTO([
-            'sendTo' => 'sendTo',
-            'transactionId' => null,
-            'currency' => 'USD',
-            'value' => 0,
-        ]);
+        $dto = new PurchaseEventDTO('sendTo', 'USD', (float) 0);
 
         $this->assertSame([
             'send_to' => 'sendTo',
             'currency' => 'USD',
-            'value' => 0,
+            'value' => 0.0,
         ], $dto->getEventParameters());
     }
 }

@@ -28,9 +28,7 @@ final class GtagEventTest extends TestCase
      */
     public function it_creates_from_dto(): void
     {
-        $tag = GtagEvent::createFromDTO(new class() extends EventDTO {
-            public $event = 'event';
-        });
+        $tag = GtagEvent::createFromDTO(new EventDTO('event'));
 
         $this->assertInstanceOf(TagInterface::class, $tag);
         $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);

@@ -13,10 +13,9 @@ final class EventDTOTest extends TestCase
      */
     public function it_returns_empty_array_for_event_parameters(): void
     {
-        $dto = new class() extends EventDTO {
-            public $event = 'event';
-        };
+        $dto = new EventDTO('event');
 
+        $this->assertSame('event', $dto->getEvent());
         $this->assertSame([], $dto->getEventParameters());
     }
 }

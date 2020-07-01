@@ -21,7 +21,7 @@ class GtagEvent extends Gtag implements GtagEventInterface
 
     public static function createFromDTO(EventDTO $dto): self
     {
-        return new self($dto->event, $dto->getEventParameters());
+        return new self($dto->getEvent(), $dto->getEventParameters());
     }
 
     public function getEvent(): string
