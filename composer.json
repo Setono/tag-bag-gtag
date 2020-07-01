@@ -15,6 +15,7 @@
         "setono/php-templates": "^1.0",
         "setono/tag-bag": "^1.0",
         "setono/tag-bag-php-templates": "^1.0",
+        "spatie/data-transfer-object": "^1.0 || ^2.0",
         "thecodingmachine/safe": "^1.0"
     },
     "require-dev": {

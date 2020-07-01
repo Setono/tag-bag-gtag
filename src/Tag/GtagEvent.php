@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\TagBag\Tag;
 
+use Setono\TagBag\DTO\EventDTO;
+
 class GtagEvent extends Gtag implements GtagEventInterface
 {
     /** @var string */
@@ -15,6 +17,11 @@ class GtagEvent extends Gtag implements GtagEventInterface
 
         $this->setName('setono_tag_bag_gtag_event');
         $this->event = $event;
+    }
+
+    public static function createFromDTO(EventDTO $dto): self
+    {
+        return new self($dto->event, $dto->getEventParameters());
     }
 
     public function getEvent(): string

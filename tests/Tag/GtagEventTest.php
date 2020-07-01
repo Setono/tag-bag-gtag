@@ -6,6 +6,7 @@ namespace Setono\TagBag\Tag;
 
 use PHPUnit\Framework\TestCase;
 use Setono\PhpTemplates\Engine\Engine;
+use Setono\TagBag\DTO\EventDTO;
 use Setono\TagBag\Renderer\PhpTemplatesRenderer;
 
 final class GtagEventTest extends TestCase
@@ -16,6 +17,21 @@ final class GtagEventTest extends TestCase
     public function it_creates(): void
     {
         $tag = new GtagEvent('event');
+        $this->assertInstanceOf(TagInterface::class, $tag);
+        $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
+        $this->assertInstanceOf(GtagInterface::class, $tag);
+        $this->assertInstanceOf(GtagEventInterface::class, $tag);
+    }
+
+    /**
+     * @test
+     */
+    public function it_creates_from_dto(): void
+    {
+        $tag = GtagEvent::createFromDTO(new class() extends EventDTO {
+            public $event = 'event';
+        });
+
         $this->assertInstanceOf(TagInterface::class, $tag);
         $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
         $this->assertInstanceOf(GtagInterface::class, $tag);
