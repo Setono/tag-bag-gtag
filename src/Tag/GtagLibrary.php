@@ -8,6 +8,8 @@ class GtagLibrary extends PhpTemplatesTag
 {
     public const NAME = 'setono_tag_bag_gtag_library';
 
+    public const PRIORITY = 100;
+
     public function __construct(string $id)
     {
         parent::__construct('@SetonoTagBagGtag/library', [
@@ -17,7 +19,7 @@ class GtagLibrary extends PhpTemplatesTag
         $this->setName(self::NAME)
             ->setUnique(true)
             ->setSection(TagInterface::SECTION_HEAD)
-            ->setPriority(128)
+            ->setPriority(self::PRIORITY)
         ;
     }
 }

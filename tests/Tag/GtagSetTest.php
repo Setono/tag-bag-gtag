@@ -29,8 +29,8 @@ final class GtagSetTest extends TestCase
         $tag = new GtagSet(['param1' => 'value1']);
 
         $this->assertSame('@SetonoTagBagGtag/set', $tag->getTemplate());
-        $this->assertSame(TagInterface::SECTION_BODY_END, $tag->getSection());
-        $this->assertSame(0, $tag->getPriority());
+        $this->assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
+        $this->assertSame(80, $tag->getPriority());
         $this->assertIsArray($tag->getDependencies());
         $this->assertCount(0, $tag->getDependencies());
         $this->assertIsArray($tag->getContext());

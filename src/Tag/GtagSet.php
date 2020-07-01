@@ -10,6 +10,9 @@ class GtagSet extends Gtag implements GtagSetInterface
     {
         parent::__construct('@SetonoTagBagGtag/set', $parameters);
 
-        $this->setName('setono_tag_bag_gtag_set');
+        $this
+            ->setName('setono_tag_bag_gtag_set')
+            ->setPriority(GtagLibrary::PRIORITY - 20)
+        ;
     }
 }

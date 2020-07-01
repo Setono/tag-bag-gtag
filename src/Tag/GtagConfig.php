@@ -13,7 +13,12 @@ class GtagConfig extends Gtag implements GtagConfigInterface
     {
         parent::__construct('@SetonoTagBagGtag/config', $parameters);
 
-        $this->setName('setono_tag_bag_gtag_config');
+        $this
+            ->setName('setono_tag_bag_gtag_config')
+            ->setPriority(GtagLibrary::PRIORITY - 10)
+            ->setUnique(true)
+        ;
+
         $this->target = $target;
     }
 

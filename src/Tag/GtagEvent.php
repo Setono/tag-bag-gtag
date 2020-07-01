@@ -15,7 +15,10 @@ class GtagEvent extends Gtag implements GtagEventInterface
     {
         parent::__construct('@SetonoTagBagGtag/event', $parameters);
 
-        $this->setName('setono_tag_bag_gtag_event');
+        $this
+            ->setName('setono_tag_bag_gtag_event')
+            ->setPriority(GtagLibrary::PRIORITY - 20)
+        ;
         $this->event = $event;
     }
 
