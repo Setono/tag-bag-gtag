@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\TagBag;
 
-use JsonException;
 use const JSON_INVALID_UTF8_IGNORE;
 use const JSON_PRESERVE_ZERO_FRACTION;
 use const JSON_PRETTY_PRINT;
 use const JSON_THROW_ON_ERROR;
 use const JSON_UNESCAPED_SLASHES;
+use JsonException;
 
 if (!function_exists('Setono\TagBag\encode')) {
     /**
