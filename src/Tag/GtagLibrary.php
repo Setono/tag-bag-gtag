@@ -33,6 +33,16 @@ class GtagLibrary extends Gtag
         ;
     }
 
+    /**
+     * We only use the name as a fingerprint for this tag because the default finger print generator uses the value
+     * of the tag as a fingerprint and since the value of this tag differs when injected in various contexts, but
+     * still shouldn't be added more than once, we do this instead.
+     */
+    public function getFingerprint(): string
+    {
+        return self::NAME;
+    }
+
     protected function getPropertiesForContext(): array
     {
         return ['id'];
