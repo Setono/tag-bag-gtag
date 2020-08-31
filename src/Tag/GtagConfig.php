@@ -6,18 +6,25 @@ namespace Setono\TagBag\Tag;
 
 class GtagConfig extends Gtag implements GtagConfigInterface
 {
+    public const TWIG_TEMPLATE = '@SetonoTagBagGtag/config.html.twig';
+
+    public const PHP_TEMPLATES_TEMPLATE = '@SetonoTagBagGtag/config.php';
+
+    /** @var string */
+    protected $name = 'setono_tag_bag_gtag_config';
+
     /** @var string */
     protected $target;
 
-    public function __construct(string $target, array $parameters = [])
+    public function __construct(string $target, array $parameters = [], string $template = null)
     {
-        parent::__construct('@SetonoTagBagGtag/config', $parameters);
+        if (null === $template) {
+            $template = self::guessTemplate(self::TWIG_TEMPLATE, self::PHP_TEMPLATES_TEMPLATE);
+        }
 
-        $this
-            ->setName('setono_tag_bag_gtag_config')
-            ->setPriority(GtagLibrary::PRIORITY - 10)
-            ->setUnique(true)
-        ;
+        parent::__construct($template, $parameters);
+
+        $this->setPriority(GtagLibrary::PRIORITY - 10);
 
         $this->target = $target;
     }

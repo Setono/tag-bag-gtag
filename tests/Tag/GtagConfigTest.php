@@ -16,10 +16,10 @@ final class GtagConfigTest extends TestCase
     public function it_creates(): void
     {
         $tag = new GtagConfig('target');
-        $this->assertInstanceOf(TagInterface::class, $tag);
-        $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
-        $this->assertInstanceOf(GtagInterface::class, $tag);
-        $this->assertInstanceOf(GtagConfigInterface::class, $tag);
+        self::assertInstanceOf(TagInterface::class, $tag);
+        self::assertInstanceOf(TemplateTagInterface::class, $tag);
+        self::assertInstanceOf(GtagInterface::class, $tag);
+        self::assertInstanceOf(GtagConfigInterface::class, $tag);
     }
 
     /**
@@ -29,16 +29,16 @@ final class GtagConfigTest extends TestCase
     {
         $tag = new GtagConfig('target');
 
-        $this->assertSame('@SetonoTagBagGtag/config', $tag->getTemplate());
-        $this->assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
-        $this->assertSame(90, $tag->getPriority());
-        $this->assertIsArray($tag->getDependencies());
-        $this->assertCount(0, $tag->getDependencies());
-        $this->assertIsArray($tag->getContext());
-        $this->assertCount(2, $tag->getContext()); // the target and parameter keys
-        $this->assertIsArray($tag->getParameters());
-        $this->assertCount(0, $tag->getParameters());
-        $this->assertSame('target', $tag->getTarget());
+        self::assertSame('@SetonoTagBagGtag/config.html.twig', $tag->getTemplate());
+        self::assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
+        self::assertSame(90, $tag->getPriority());
+        self::assertIsArray($tag->getDependencies());
+        self::assertCount(0, $tag->getDependencies());
+        self::assertIsArray($tag->getContext());
+        self::assertCount(2, $tag->getContext()); // the target and parameter keys
+        self::assertIsArray($tag->getParameters());
+        self::assertCount(0, $tag->getParameters());
+        self::assertSame('target', $tag->getTarget());
     }
 
     /**
@@ -50,7 +50,7 @@ final class GtagConfigTest extends TestCase
             'param1' => 'value1',
         ]);
         $tag->addParameter('param2', 'value2');
-        $this->assertSame(['param1' => 'value1', 'param2' => 'value2'], $tag->getParameters());
+        self::assertSame(['param1' => 'value1', 'param2' => 'value2'], $tag->getParameters());
     }
 
     /**
@@ -58,7 +58,7 @@ final class GtagConfigTest extends TestCase
      */
     public function it_renders(): void
     {
-        $tag = new GtagConfig('target');
+        $tag = new GtagConfig('target', [], GtagConfig::PHP_TEMPLATES_TEMPLATE);
 
         $renderer = new PhpTemplatesRenderer(new Engine([__DIR__ . '/../../src/templates']));
 
@@ -69,8 +69,8 @@ gtag('config', 'target');
 
 SCRIPT;
 
-        $this->assertTrue($renderer->supports($tag));
-        $this->assertSame($expected, $renderer->render($tag));
+        self::assertTrue($renderer->supports($tag));
+        self::assertSame($expected, $renderer->render($tag));
     }
 
     /**
@@ -80,7 +80,7 @@ SCRIPT;
     {
         $tag = new GtagConfig('target', [
             'param1' => 'value1',
-        ]);
+        ], GtagConfig::PHP_TEMPLATES_TEMPLATE);
 
         $renderer = new PhpTemplatesRenderer(new Engine([__DIR__ . '/../../src/templates']));
 
@@ -93,7 +93,7 @@ gtag('config', 'target', {
 
 SCRIPT;
 
-        $this->assertTrue($renderer->supports($tag));
-        $this->assertSame($expected, $renderer->render($tag));
+        self::assertTrue($renderer->supports($tag));
+        self::assertSame($expected, $renderer->render($tag));
     }
 }

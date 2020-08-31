@@ -8,18 +8,30 @@ use Setono\TagBag\DTO\EventDTO;
 
 class GtagEvent extends Gtag implements GtagEventInterface
 {
+    public const TWIG_TEMPLATE = '@SetonoTagBagGtag/event.html.twig';
+
+    public const PHP_TEMPLATES_TEMPLATE = '@SetonoTagBagGtag/event.php';
+
+    /** @var string */
+    protected $name = 'setono_tag_bag_gtag_event';
+
     /** @var string */
     protected $event;
 
-    public function __construct(string $event, array $parameters = [])
+    public function __construct(string $event, array $parameters = [], string $template = null)
     {
-        parent::__construct('@SetonoTagBagGtag/event', $parameters);
+        if (null === $template) {
+            $template = self::guessTemplate(self::TWIG_TEMPLATE, self::PHP_TEMPLATES_TEMPLATE);
+        }
+
+        parent::__construct($template, $parameters);
+
+        $this->event = $event;
 
         $this
-            ->setName('setono_tag_bag_gtag_event')
             ->setPriority(GtagLibrary::PRIORITY - 20)
+            ->setUnique(false)
         ;
-        $this->event = $event;
     }
 
     public static function createFromDTO(EventDTO $dto): self

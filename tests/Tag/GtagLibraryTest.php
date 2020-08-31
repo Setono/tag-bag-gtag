@@ -19,8 +19,8 @@ final class GtagLibraryTest extends TestCase
     public function it_creates(): void
     {
         $tag = new GtagLibrary('id');
-        $this->assertInstanceOf(TagInterface::class, $tag);
-        $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
+        self::assertInstanceOf(TagInterface::class, $tag);
+        self::assertInstanceOf(TemplateTagInterface::class, $tag);
     }
 
     /**
@@ -30,9 +30,9 @@ final class GtagLibraryTest extends TestCase
     {
         $tag = new GtagLibrary('id');
 
-        $this->assertSame('@SetonoTagBagGtag/library', $tag->getTemplate());
-        $this->assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
-        $this->assertSame(100, $tag->getPriority());
+        self::assertSame('@SetonoTagBagGtag/library', $tag->getTemplate());
+        self::assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
+        self::assertSame(100, $tag->getPriority());
     }
 
     /**
@@ -54,7 +54,7 @@ gtag('js', new Date());
 
 SCRIPT;
 
-        $this->assertTrue($renderer->supports($tag));
-        $this->assertSame($expected, $renderer->render($tag));
+        self::assertTrue($renderer->supports($tag));
+        self::assertSame($expected, $renderer->render($tag));
     }
 }

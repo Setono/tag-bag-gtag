@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\TagBag\Tag;
 
-interface GtagInterface extends PhpTemplatesTagInterface
+interface GtagInterface extends TemplateTagInterface
 {
     public function getParameters(): array;
 

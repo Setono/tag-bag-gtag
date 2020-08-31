@@ -17,10 +17,10 @@ final class GtagEventTest extends TestCase
     public function it_creates(): void
     {
         $tag = new GtagEvent('event');
-        $this->assertInstanceOf(TagInterface::class, $tag);
-        $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
-        $this->assertInstanceOf(GtagInterface::class, $tag);
-        $this->assertInstanceOf(GtagEventInterface::class, $tag);
+        self::assertInstanceOf(TagInterface::class, $tag);
+        self::assertInstanceOf(TemplateTagInterface::class, $tag);
+        self::assertInstanceOf(GtagInterface::class, $tag);
+        self::assertInstanceOf(GtagEventInterface::class, $tag);
     }
 
     /**
@@ -30,10 +30,10 @@ final class GtagEventTest extends TestCase
     {
         $tag = GtagEvent::createFromDTO(new EventDTO('event'));
 
-        $this->assertInstanceOf(TagInterface::class, $tag);
-        $this->assertInstanceOf(PhpTemplatesTagInterface::class, $tag);
-        $this->assertInstanceOf(GtagInterface::class, $tag);
-        $this->assertInstanceOf(GtagEventInterface::class, $tag);
+        self::assertInstanceOf(TagInterface::class, $tag);
+        self::assertInstanceOf(TemplateTagInterface::class, $tag);
+        self::assertInstanceOf(GtagInterface::class, $tag);
+        self::assertInstanceOf(GtagEventInterface::class, $tag);
     }
 
     /**
@@ -43,16 +43,16 @@ final class GtagEventTest extends TestCase
     {
         $tag = new GtagEvent('event');
 
-        $this->assertSame('@SetonoTagBagGtag/event', $tag->getTemplate());
-        $this->assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
-        $this->assertSame(80, $tag->getPriority());
-        $this->assertIsArray($tag->getDependencies());
-        $this->assertCount(0, $tag->getDependencies());
-        $this->assertIsArray($tag->getContext());
-        $this->assertCount(2, $tag->getContext()); // the event and parameter keys
-        $this->assertIsArray($tag->getParameters());
-        $this->assertCount(0, $tag->getParameters());
-        $this->assertSame('event', $tag->getEvent());
+        self::assertSame('@SetonoTagBagGtag/event.html.twig', $tag->getTemplate());
+        self::assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
+        self::assertSame(80, $tag->getPriority());
+        self::assertIsArray($tag->getDependencies());
+        self::assertCount(0, $tag->getDependencies());
+        self::assertIsArray($tag->getContext());
+        self::assertCount(2, $tag->getContext()); // the event and parameter keys
+        self::assertIsArray($tag->getParameters());
+        self::assertCount(0, $tag->getParameters());
+        self::assertSame('event', $tag->getEvent());
     }
 
     /**
@@ -64,7 +64,7 @@ final class GtagEventTest extends TestCase
             'param1' => 'value1',
         ]);
         $tag->addParameter('param2', 'value2');
-        $this->assertSame(['param1' => 'value1', 'param2' => 'value2'], $tag->getParameters());
+        self::assertSame(['param1' => 'value1', 'param2' => 'value2'], $tag->getParameters());
     }
 
     /**
@@ -72,7 +72,7 @@ final class GtagEventTest extends TestCase
      */
     public function it_renders(): void
     {
-        $tag = new GtagEvent('event');
+        $tag = new GtagEvent('event', [], GtagEvent::PHP_TEMPLATES_TEMPLATE);
 
         $renderer = new PhpTemplatesRenderer(new Engine([__DIR__ . '/../../src/templates']));
 
@@ -83,8 +83,8 @@ gtag('event', 'event');
 
 SCRIPT;
 
-        $this->assertTrue($renderer->supports($tag));
-        $this->assertSame($expected, $renderer->render($tag));
+        self::assertTrue($renderer->supports($tag));
+        self::assertSame($expected, $renderer->render($tag));
     }
 
     /**
@@ -94,7 +94,7 @@ SCRIPT;
     {
         $tag = new GtagEvent('event', [
             'param1' => 'value1',
-        ]);
+        ], GtagEvent::PHP_TEMPLATES_TEMPLATE);
 
         $renderer = new PhpTemplatesRenderer(new Engine([__DIR__ . '/../../src/templates']));
 
@@ -107,7 +107,7 @@ gtag('event', 'event', {
 
 SCRIPT;
 
-        $this->assertTrue($renderer->supports($tag));
-        $this->assertSame($expected, $renderer->render($tag));
+        self::assertTrue($renderer->supports($tag));
+        self::assertSame($expected, $renderer->render($tag));
     }
 }
