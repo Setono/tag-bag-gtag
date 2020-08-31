@@ -30,7 +30,7 @@ final class GtagLibraryTest extends TestCase
     {
         $tag = new GtagLibrary('id');
 
-        self::assertSame('@SetonoTagBagGtag/library', $tag->getTemplate());
+        self::assertSame('@SetonoTagBagGtag/library.html.twig', $tag->getTemplate());
         self::assertSame(TagInterface::SECTION_HEAD, $tag->getSection());
         self::assertSame(100, $tag->getPriority());
     }
@@ -40,7 +40,7 @@ final class GtagLibraryTest extends TestCase
      */
     public function it_renders_with_parameters(): void
     {
-        $tag = new GtagLibrary('id');
+        $tag = new GtagLibrary('id', GtagLibrary::PHP_TEMPLATES_TEMPLATE);
 
         $renderer = new PhpTemplatesRenderer(new Engine([__DIR__ . '/../../src/templates']));
 

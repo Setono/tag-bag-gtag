@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\TagBag\Tag;
 
+use const PATHINFO_EXTENSION;
 use RuntimeException;
 use function Safe\sprintf;
 
@@ -68,7 +69,7 @@ abstract class Gtag extends Tag implements GtagInterface
 
     public function getTemplateType(): string
     {
-        return mb_strtolower(pathinfo($this->template, \PATHINFO_EXTENSION));
+        return mb_strtolower(pathinfo($this->template, PATHINFO_EXTENSION));
     }
 
     /**
