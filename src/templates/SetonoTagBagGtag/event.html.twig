@@ -1,6 +1,6 @@
 <script>
 {% if parameters|length > 0 %}
-gtag('event', '{{ event }}', {{ parameters|json_encode(constant('JSON_THROW_ON_ERROR') b-or constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_PRESERVE_ZERO_FRACTION') b-or constant('JSON_INVALID_UTF8_IGNORE')) }});
+gtag('event', '{{ event }}', {{ parameters|json_encode(constant('JSON_THROW_ON_ERROR') b-or constant('JSON_PRETTY_PRINT') b-or constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_PRESERVE_ZERO_FRACTION') b-or constant('JSON_INVALID_UTF8_IGNORE'))|raw }});
 {% else %}
 gtag('event', '{{ event }}');
 {% endif %}
