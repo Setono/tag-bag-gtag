@@ -18,7 +18,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3",
-        "setono/code-quality-pack": "^1.4",
+        "setono/code-quality-pack": "^1.4 || ^2.0",
         "setono/php-templates": "^1.1",
         "setono/tag-bag-php-templates": "^1.2",
         "twig/twig": "^1.0 || ^2.0 || ^3.0"
