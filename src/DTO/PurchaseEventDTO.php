@@ -8,17 +8,13 @@ use Setono\TagBag\Tag\GtagEventInterface;
 
 final class PurchaseEventDTO extends EventDTO
 {
-    /** @var string */
-    private $sendTo;
+    private string $sendTo;
 
-    /** @var string|null */
-    private $transactionId;
+    private ?string $transactionId;
 
-    /** @var string */
-    private $currency;
+    private string $currency;
 
-    /** @var float */
-    private $value;
+    private float $value;
 
     public function __construct(string $sendTo, string $currency, float $value, string $transactionId = null)
     {

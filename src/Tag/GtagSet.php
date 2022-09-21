@@ -10,8 +10,7 @@ class GtagSet extends Gtag implements GtagSetInterface
 
     public const PHP_TEMPLATES_TEMPLATE = '@SetonoTagBagGtag/set.php';
 
-    /** @var string */
-    protected $name = 'setono_tag_bag_gtag_set';
+    protected string $name = 'setono_tag_bag_gtag_set';
 
     public function __construct(array $parameters, string $template = null)
     {

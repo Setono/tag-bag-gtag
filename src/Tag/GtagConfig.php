@@ -10,11 +10,9 @@ class GtagConfig extends Gtag implements GtagConfigInterface
 
     public const PHP_TEMPLATES_TEMPLATE = '@SetonoTagBagGtag/config.php';
 
-    /** @var string */
-    protected $name = 'setono_tag_bag_gtag_config';
+    protected string $name = 'setono_tag_bag_gtag_config';
 
-    /** @var string */
-    protected $target;
+    protected string $target;
 
     public function __construct(string $target, array $parameters = [], string $template = null)
     {
