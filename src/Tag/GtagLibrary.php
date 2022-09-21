@@ -14,8 +14,7 @@ class GtagLibrary extends Gtag
 
     public const PRIORITY = 100;
 
-    /** @var string */
-    protected $id;
+    protected string $id;
 
     public function __construct(string $id, string $template = null)
     {

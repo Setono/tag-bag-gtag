@@ -6,8 +6,7 @@ namespace Setono\TagBag\DTO;
 
 class EventDTO
 {
-    /** @var string */
-    private $event;
+    private string $event;
 
     public function __construct(string $event)
     {

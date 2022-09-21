@@ -12,11 +12,9 @@ class GtagEvent extends Gtag implements GtagEventInterface
 
     public const PHP_TEMPLATES_TEMPLATE = '@SetonoTagBagGtag/event.php';
 
-    /** @var string */
-    protected $name = 'setono_tag_bag_gtag_event';
+    protected string $name = 'setono_tag_bag_gtag_event';
 
-    /** @var string */
-    protected $event;
+    protected string $event;
 
     public function __construct(string $event, array $parameters = [], string $template = null)
     {

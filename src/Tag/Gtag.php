@@ -6,18 +6,14 @@ namespace Setono\TagBag\Tag;
 
 use const PATHINFO_EXTENSION;
 use RuntimeException;
-use function Safe\sprintf;
 
 abstract class Gtag extends Tag implements GtagInterface
 {
-    /** @var string */
-    protected $name = 'setono_tag_bag_gtag';
+    protected string $name = 'setono_tag_bag_gtag';
 
-    /** @var string */
-    protected $template;
+    protected string $template;
 
-    /** @var array */
-    protected $parameters;
+    protected array $parameters;
 
     public function __construct(string $template, array $parameters = [])
     {
@@ -47,12 +43,16 @@ abstract class Gtag extends Tag implements GtagInterface
         return $this->template;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getContext(): array
     {
         $properties = $this->getPropertiesForContext();
 
         $context = [];
         foreach ($properties as $property) {
+            /** @psalm-suppress MixedAssignment */
             $context[$property] = $this->{$property};
         }
 
@@ -74,6 +74,8 @@ abstract class Gtag extends Tag implements GtagInterface
 
     /**
      * Returns the properties that will be returned as the context for the template
+     *
+     * @return list<string>
      */
     protected function getPropertiesForContext(): array
     {
